@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="login/images/icons/favicon.ico"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="login/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="login/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="login/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="login/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="login/css/util.css">
+    <link rel="stylesheet" type="text/css" href="login/css/main.css">
+    <!--===============================================================================================-->
+    <style>
+        body {
+            background-color: #f0f8ff; /* Light background color for contrast */
+        }
+
+        .container-login100 {
+            background-color: #007bff; /* Blue background for container */
+            background-image: unset !important;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .login100-form-title {
+            color: #000000; /* Black text for the title */
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .input100 {
+            border-radius: 5px;
+            border: 1px solid #007bff;
+            color: #000000; /* Black text for input fields */
+        }
+
+        .input100:focus + .focus-input100::before {
+            border-color: #0056b3;
+        }
+
+        .input100:focus {
+            border-bottom: 2px solid #0056b3;
+        }
+
+        .login100-form-btn {
+            background-color: #0056b3;
+            border-radius: 5px;
+        }
+
+        .login100-form-btn:hover {
+            background-color: #003d7a;
+        }
+
+        .txt1 {
+            color: #000000; /* Black text for links */
+        }
+
+        .txt1:hover {
+            color: #cce5ff;
+        }
+
+        .bo1 {
+            border-color: #007bff;
+        }
+
+        .bo1:hover {
+            border-color: #0056b3;
+        }
+
+        .alart {
+            color: #000000; /* Black text for alerts */
+            font-weight: bold;
+        }
+
+        .wrap-input100 {
+            position: relative;
+            border-radius: 5px;
+        }
+
+        .wrap-input100 input {
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .wrap-input100 .symbol-input100 {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            transition: opacity 0.3s ease;
+        }
+
+        .wrap-input100 input:focus ~ .symbol-input100 {
+            opacity: 0; /* Hide icons when input is focused */
+        }
+
+        .wrap-login100 {
+            padding: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
+            <form class="login100-form validate-form"  th:action="@{/authenticateTheUser}"  method="POST">
+
+                <span class="login100-form-title p-b-55">
+                    Connexion Utilisateur, Docteur & Admin
+                </span>
+
+                <div class="wrap-input100 validate-input m-b-16" data-validate="Valid email is required: ex@abc.xyz">
+                    <input class="input100" type="text" name="username" placeholder="E-mail">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <span class="lnr lnr-envelope"></span>
+                    </span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-16" data-validate="Password is required">
+                    <input class="input100" type="password" name="password" placeholder="Mot de passe">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <span class="lnr lnr-lock"></span>
+                    </span>
+                </div>
+
+                <div class="container-login100-form-btn p-t-25">
+                    <button class="login100-form-btn">
+                        Connexion
+                    </button>
+                </div>
+
+                <div th:if="${param.error != null}" class="text-center w-full p-t-42 p-b-22">
+                    <span class="alart">
+                        Mot de passe / Nom d'utilisateur incorrect
+                    </span>
+                </div>
+
+                <div th:if="${param.logout != null}" class="text-center w-full p-t-42 p-b-22">
+                    <span class="alart">
+                        Vous êtes déconnecté avec succès
+                    </span>
+                </div>
+            </form>
+
+            <div class="text-center w-full p-t-115">
+                <span class="txt1">
+                    Pas encore membre?
+                </span>
+
+                <a class="txt1 bo1 hov1" th:href="@{/register}">
+                    Inscrivez-vous maintenant
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--===============================================================================================-->
+<script src="login/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="login/vendor/bootstrap/js/popper.js"></script>
+<script src="login/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="login/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="login/js/main.js"></script>
+
+</body>
+</html>

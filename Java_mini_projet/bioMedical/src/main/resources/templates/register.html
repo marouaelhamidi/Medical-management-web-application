@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>User Registration with Spring Boot</title>
+
+    <!-- Bootstrap core CSS -->
+    <link
+            href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+            crossorigin="anonymous" />
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <link rel="stylesheet" type="text/css" href="login/vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="login/vendor/css-hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css" href="login/vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="login/css/util.css">
+    <link rel="stylesheet" type="text/css" href="login/css/main.css">
+    <style>
+        body {
+            background-color: #f0f8ff; /* Light background color for contrast */
+        }
+
+        .container-login100 {
+            background-color: #007bff; /* Blue background for container */
+            background-image: unset !important;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            padding: 30px;
+        }
+
+        .login100-form-title {
+            color: #000000; /* Black text for the title */
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .input100 {
+            border-radius: 5px;
+            border: 1px solid #007bff;
+            color: #000000; /* Black text for input fields */
+        }
+
+        .input100:focus + .focus-input100::before {
+            border-color: #0056b3;
+        }
+
+        .input100:focus {
+            border-bottom: 2px solid #0056b3;
+        }
+
+        .login100-form-btn {
+            background-color: #0056b3;
+            border-radius: 5px;
+        }
+
+        .login100-form-btn:hover {
+            background-color: #003d7a;
+        }
+
+        .txt1 {
+            color: #000000; /* Black text for links */
+        }
+
+        .txt1:hover {
+            color: #cce5ff;
+        }
+
+        .bo1 {
+            border-color: #007bff;
+        }
+
+        .bo1:hover {
+            border-color: #0056b3;
+        }
+
+        .alert {
+            color: #000000; /* Black text for alerts */
+            font-weight: bold;
+        }
+
+        .wrap-input100 {
+            position: relative;
+            border-radius: 5px;
+        }
+
+        .wrap-input100 input {
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .wrap-input100 .symbol-input100 {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            transition: opacity 0.3s ease;
+        }
+
+        .wrap-input100 input:focus ~ .symbol-input100 {
+            opacity: 0; /* Hide icons when input is focused */
+        }
+
+        .form-group input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .form-group label {
+            margin-right: 20px;
+        }
+    </style>
+</head>
+
+<body class="gray-bg">
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
+            <form class="login100-form validate-form" autocomplete="off" th:action="@{/register}" th:object="${user}" method="post" data-toggle="validator">
+
+                <span class="login100-form-title p-b-55">
+                    User Registration
+                </span>
+
+                <div th:if="${confirmationMessage}" class="alert alert-success" role="alert" th:text="${confirmationMessage}"></div>
+                <div th:if="${alreadyRegisteredMessage}" class="alert alert-danger" role="alert" th:text="${alreadyRegisteredMessage}"></div>
+
+                <div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="validation-message alert alert-danger" role="alert"></div>
+                <div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="validation-message alert alert-danger" role="alert"></div>
+                <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="validation-message alert alert-danger" role="alert"></div>
+                <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="validation-message alert alert-danger" role="alert"></div>
+
+                <div class="wrap-input100 validate-input m-b-16" data-validate="First Name is required">
+                    <input class="input100" type="text" th:field="*{firstName}" placeholder="First Name" required>
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100"><span class="lnr lnr-user"></span></span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-16" data-validate="Last Name is required">
+                    <input class="input100" type="text" th:field="*{lastName}" placeholder="Last Name" required>
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100"><span class="lnr lnr-user"></span></span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-16" data-validate="Valid email is required: ex@abc.xyz">
+                    <input class="input100" type="email" th:field="*{email}" placeholder="Email Address" data-error="This email address is invalid" required>
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100"><span class="lnr lnr-envelope"></span></span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-16" data-validate="Password is required">
+                    <input class="input100" type="password" th:field="*{password}" placeholder="Password" required>
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100"><span class="lnr lnr-lock"></span></span>
+                </div>
+
+                <div class="form-group input-group has-feedback">
+                    <label>Gender:</label>
+                    <label class="radio-inline">
+                        <input type="radio" th:field="*{gender}" th:value="Male" /> Male
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" th:field="*{gender}" th:value="Female" /> Female
+                    </label>
+                </div>
+
+                <div class="container-login100-form-btn p-t-25">
+                    <button class="login100-form-btn" type="submit">
+                        Register
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="text-center w-full p-t-115">
+                <span class="txt1">
+                    Already have an account?
+                </span>
+                <a class="txt1 bo1 hov1" th:href="@{/showMyLoginPage}">
+                    Log-in
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- jQuery-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<!-- Bootstrap Validator plugin -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+<script src="login/vendor/select2/select2.min.js"></script>
+<script src="login/js/main.js"></script>
+
+</body>
+</html>

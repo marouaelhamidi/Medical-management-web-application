@@ -1,0 +1,4 @@
+INDEX VERSION 1.132+C:\Users\MonAsus\Desktop\ISGA\JAVA\Java_mini_projet\.metadata\.plugins\org.eclipse.jdt.core
+2038124783.index
+56616406.index
+1865797976.index
