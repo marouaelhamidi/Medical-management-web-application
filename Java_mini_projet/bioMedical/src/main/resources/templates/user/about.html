@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>À propos - Projet BioMed</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Styles CSS personnalisés */
+        body {
+            background-image: url('../images/bg.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #0056b3 !important;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+        }
+
+        .nav-link {
+            font-size: 1.2rem;
+        }
+
+        .jumbotron {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .jumbotron h1,
+        .jumbotron p,
+        .jumbotron a {
+            color: #0056b3;
+        }
+
+        .btn-primary {
+            background-color: #0056b3;
+            border-color: #0056b3;
+            color: #fff !important;
+        }
+
+        .footer {
+            background-color: #0056b3;
+            color: #ffffff;
+            padding: 20px 0;
+        }
+
+        .full-height {
+            min-height: 100vh;
+        }
+
+        .section-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .white-column {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            max-width: 90%;
+            height: 100%;
+        }
+
+        .white-column h2,
+        .white-column h3,
+        .white-column p,
+        .white-column ul {
+            color: #0056b3;
+        }
+
+        .white-column ol {
+            counter-reset: list;
+        }
+
+        .white-column ol li {
+            list-style: none;
+            counter-increment: list;
+            margin-bottom: 15px;
+        }
+
+        .white-column ol li:before {
+            content: counter(list) ".";
+            margin-right: 5px;
+        }
+
+        .white-column ol li h3 {
+            margin-top: 0;
+        }
+
+        .text-muted {
+            color: #fff !important;
+        }
+
+        /* Chat styles */
+        #chatbox {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            max-height: 400px;
+            overflow-y: auto;
+            display: none;
+            flex-direction: column;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            background: #fff;
+            border: 2px solid #0056b3;
+        }
+
+        #chatbox.active {
+            display: flex;
+        }
+
+        #chatbox .messages {
+            flex-grow: 1;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #chatbox .message {
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+            max-width: 80%;
+            position: relative;
+        }
+
+        #chatbox .message.user {
+            background-color: #e3f2fd;
+            align-self: flex-end;
+        }
+
+        #chatbox .message.bot {
+            background-color: #bbdefb;
+            align-self: flex-start;
+        }
+
+        #chatbox .input {
+            display: flex;
+            border-top: 1px solid #ccc;
+        }
+
+        #chatbox .input input {
+            flex-grow: 1;
+            border: none;
+            padding: 10px;
+            border-radius: 0 0 0 10px;
+            outline: none;
+        }
+
+        #chatbox .input input:focus {
+            border: 1px solid #0056b3;
+        }
+
+        #chatbox .input button {
+            padding: 10px;
+            border: none;
+            background: #0056b3;
+            color: #fff;
+            border-radius: 0 0 10px 0;
+            cursor: pointer;
+        }
+
+        #chatToggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #0056b3;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/user/index">Projet BioMed</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/user/index">Accueil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/user/about">À propos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/user/contact">Contact</a>
+            </li>
+            <li class="nav-item cta"><a class="nav-link" data-toggle="modal"
+                                        data-target="#modalAppointment"><span>Prendre un rendez-vous</span></a></li>
+            <li class="nav-item">
+                <form action="/logout" method="POST">
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container-fluid full-height d-flex align-items-center">
+    <div class="row w-100">
+        <div class="col-lg-12">
+            <div class="white-column p-4">
+                <h1 class="display-4 text-center">À propos de Projet BioMed</h1>
+                <ol>
+                    <li>
+                        <h3>Suivi des Données Biomédicales :</h3>
+                        <p>Projet BioMed permet aux utilisateurs de saisir et de stocker leurs données biomédicales, telles que les informations sur les consultations médicales, les résultats de tests, les antécédents médicaux, etc.</p>
+                    </li>
+                    <li>
+                        <h3>Analyse et Visualisation :</h3>
+                        <p>La plateforme offre des outils d'analyse avancés pour interpréter les données biomédicales. Les utilisateurs peuvent générer des graphiques et des tableaux pour visualiser leurs données, ce qui facilite la compréhension et la prise de décision.</p>
+                    </li>
+                    <li>
+                        <h3>Gestion des Rendez-vous :</h3>
+                        <p>Projet BioMed inclut un système de gestion des rendez-vous qui permet aux utilisateurs de planifier leurs consultations médicales et de recevoir des rappels automatiques. Les utilisateurs peuvent également annuler ou modifier leurs rendez-vous en ligne.</p>
+                    </li>
+                    <li>
+                        <h3>Sécurité et Confidentialité :</h3>
+                        <p>La plateforme garantit la sécurité et la confidentialité des données biomédicales de ses utilisateurs. Toutes les informations sont stockées de manière sécurisée et ne sont accessibles qu'aux utilisateurs autorisés.</p>
+                    </li>
+                    <li>
+                        <h3>Interface Conviviale :</h3>
+                        <p>Projet BioMed offre une interface conviviale et intuitive, adaptée aux besoins des professionnels de la santé et des patients. La navigation est simple et les fonctionnalités sont facilement accessibles.</p>
+                    </li>
+                    <li>
+                        <h3>Compatibilité Multiplateforme :</h3>
+                        <p>La plateforme est accessible depuis n'importe quel appareil connecté à Internet, que ce soit un ordinateur de bureau, une tablette ou un smartphone. Cela permet aux utilisateurs de gérer leurs données biomédicales en déplacement.</p>
+                    </li>
+                    <li>
+                        <h3>Propriétaires du projet :</h3>
+                        <p class="lead">Nous sommes une équipe de la filière 2CIISI de l'école ISGA.</p>
+                        <ul class="list-unstyled">
+                            <li>Maroua El Hamidi</li>
+                            <li>Badereddine Belmouss</li>
+                            <li>Merym Akerkab</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container text-center">
+        <span class="text-muted">© 2024 Projet BioMed. Tous droits réservés.</span>
+    </div>
+</footer>
+
+<!-- Modal -->
+<div class="modal fade" id="modalAppointment" tabindex="-1" role="dialog" aria-labelledby="modalAppointmentLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAppointmentLabel">Prendre un rendez-vous</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/user/save-app" method="POST">
+                    <div class="form-group">
+                        <label for="appointment_name" class="text-black">Nom Complet</label>
+                        <input type="text" name="name" class="form-control" id="appointment_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="appointment_email" class="text-black">Email</label>
+                        <input type="text" name="email" class="form-control" id="appointment_email">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="appointment_date" class="text-black">Date</label>
+                                <input type="text" name="date" class="form-control" id="appointment_date">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="appointment_time" class="text-black">Heure</label>
+                                <input type="text" name="time" class="form-control" id="appointment_time">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="appointment_message" class="text-black">Message</label>
+                        <textarea name="description" id="appointment_message" class="form-control"
+                                  cols="30" rows="10"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Envoyer le Message" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Chatbox -->
+<div id="chatbox">
+    <div class="messages">
+        <!-- Chat messages will be dynamically inserted here -->
+    </div>
+    <div class="input">
+        <input type="text" id="chatInput" placeholder="Tapez votre message...">
+        <button id="sendBtn">Envoyer</button>
+    </div>
+</div>
+<button id="chatToggle">Chat</button>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#chatToggle').click(function() {
+            $('#chatbox').toggleClass('active');
+        });
+
+        $('#sendBtn').click(function() {
+            const question = $('#chatInput').val();
+            if (question.trim() !== '') {
+                $.ajax({
+                    url: '/api/chat',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ question: question }),
+                    success: function(response) {
+                        const chatBox = $('#chatbox .messages');
+                        chatBox.append('<div class="message user"><strong>Vous :</strong> ' + question + '</div>');
+                        if (response && response !== '') {
+                            const jsonResponse = JSON.parse(response);
+                            const botResponse = jsonResponse.response || response;
+                            chatBox.append('<div class="message bot"><strong>Bot :</strong> ' + botResponse + '</div>');
+                        }
+                        $('#chatInput').val('');
+                        chatBox.scrollTop(chatBox[0].scrollHeight);
+                    },
+                    error: function() {
+                        alert('Erreur de communication avec le serveur du chatbot.');
+                    }
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>

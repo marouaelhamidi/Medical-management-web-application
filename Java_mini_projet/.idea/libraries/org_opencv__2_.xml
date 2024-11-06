@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="org.opencv (2)">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/bioMedical/lib/opencv-3416.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/bioMedical/lib/opencv-3416.jar!/" />
+    </SOURCES>
+  </library>
+</component>

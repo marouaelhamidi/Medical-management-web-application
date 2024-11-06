@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Meta tags requis -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Modèle de thème bleu">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="Modèle de thème bleu">
+
+    <!-- Titre de la page -->
+    <title>Dashboard Docteur</title>
+
+    <!-- CSS des polices -->
+    <link href="../doctor/css/font-face.css" rel="stylesheet" media="all">
+    <link href="../doctor/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="../doctor/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="../doctor/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS -->
+    <link href="../doctor/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+    <!-- CSS des vendeurs -->
+    <link href="../doctor/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="../doctor/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="../doctor/vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="../doctor/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="../doctor/vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="../doctor/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="../doctor/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+    <!-- CSS principal -->
+    <link href="../doctor/css/theme.css" rel="stylesheet" media="all">
+
+    <!-- CSS personnalisé pour le thème bleu -->
+    <style>
+        /* Couleur bleue pour le header */
+        .header-desktop {
+            background-color: #007BFF;
+            color: #ffffff;
+        }
+
+        /* Couleur bleue pour la barre de navigation */
+        .navbar-sidebar {
+            background-color: #007BFF;
+            color: #ffffff;
+        }
+
+        /* Couleur du texte blanc pour la barre de navigation */
+        .navbar-sidebar .list-unstyled.navbar__list li a {
+            color: #ffffff;
+        }
+        .menu-sidebar .logo {
+            background: #007BFF;
+        }
+        .btn-success {
+            color: #fff;
+            background-color: #007BFF;
+            border-color: #007BFF;
+        }
+        .table-data3 thead {
+            background: #007BFF;
+            color: #ffffff;
+        }
+        .table-data3 th, .table-data3 td {
+            padding: 12px;
+            text-align: left;
+        }
+        .table-data3 th {
+            font-weight: bold;
+        }
+        .table-data3 tbody tr {
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.3s ease;
+        }
+        .table-data3 tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+        .table-data3 tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .table-data3 tbody tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+        .content a p {
+            color: #fff !important;
+        }
+        /* Style pour le logo */
+        .logo {
+            padding: 20px 10px;
+            text-align: center;
+            background-color: #007BFF;
+            color: #ffffff;
+        }
+
+        /* Style pour le texte du logo */
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Arrière-plan bleu pour le sidebar */
+        .menu-sidebar {
+            background-color: #007BFF;
+            color: #ffffff;
+        }
+    </style>
+
+</head>
+
+<body class="animsition">
+<div class="page-wrapper">
+    <!-- HEADER MOBILE -->
+    <header class="header-mobile d-block d-lg-none">
+        <div class="header-mobile__bar">
+            <div class="container-fluid">
+                <div class="header-mobile-inner">
+                    <div class="logo">
+                        <span class="logo-text">Biomed</span>
+                    </div>
+                    <button class="hamburger hamburger--slider" type="button">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar-mobile">
+            <div class="container-fluid">
+                <ul class="navbar-mobile__list list-unstyled">
+                    <li>
+                        <a th:href="@{/doctor/index}">
+                            <i class="fas fa-table"></i> Rendez-vous</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- END HEADER MOBILE -->
+
+    <!-- MENU SIDEBAR -->
+    <aside class="menu-sidebar d-none d-lg-block">
+        <div class="logo">
+            <span class="logo-text">Biomed</span>
+        </div>
+        <div class="menu-sidebar__content js-scrollbar1">
+            <nav class="navbar-sidebar">
+                <ul class="list-unstyled navbar__list">
+                    <li class="active">
+                        <a th:href="@{/doctor/index}">
+                            <i class="fas fa-table"></i> Rendez-vous</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </aside>
+    <!-- END MENU SIDEBAR -->
+
+    <!-- CONTENU DE LA PAGE -->
+    <div class="page-container">
+        <!-- HEADER DESKTOP -->
+        <header class="header-desktop">
+            <div class="section__content section__content--p30">
+                <div class="container-fluid">
+                    <div class="header-wrap">
+                        <form class="form-header" action="" method="POST">
+                        </form>
+                        <div class="header-button">
+                            <div class="noti-wrap">
+                                <div class="noti__item js-item-menu">
+                                </div>
+                                <div class="noti__item js-item-menu">
+                                </div>
+                                <div class="noti__item js-item-menu">
+                                </div>
+                            </div>
+                            <div class="account-wrap">
+                                <div class="account-item clearfix js-item-menu">
+                                    <div class="image">
+                                        <img src="images/doc.jpg" alt="John Doe" />
+                                    </div>
+                                    <div class="content">
+                                        <a class="js-acc-btn" href="#">
+                                            <p th:text="${name}">Test</p>
+                                        </a>
+                                    </div>
+                                    <div class="account-dropdown js-dropdown">
+                                        <div class="info clearfix">
+                                            <div class="image">
+                                                <a href="#">
+                                                    <img src="images/doc.jpg" alt="John Doe" />
+                                                </a>
+                                            </div>
+                                            <div class="content">
+                                                <h5 class="name">
+                                                    <p th:text="${user}">Test</p>
+                                                </h5>
+                                                <span class="email">
+                                                        <p th:text="${email}"></p>
+                                                    </span>
+                                            </div>
+                                        </div>
+                                        <div class="account-dropdown__footer">
+                                            <form th:action="@{/logout}" method="POST">
+                                                <button type="submit" class="btn btn-success btn-lg">Déconnexion</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- END HEADER DESKTOP -->
+
+        <!-- CONTENU PRINCIPAL -->
+        <div class="main-content">
+            <div class="section__content section__content--p30">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-9">
+                        </div>
+                        <div class="col-lg-3">
+                        </div>
+                    </div>
+                    <!-- TABLEAU DE DONNÉES -->
+                    <div class="row m-t-30">
+                        <div class="col-md-12">
+                            <div class="table-responsive m-b-40">
+                                <table class="table table-borderless table-data3">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nom</th>
+                                        <th>Email</th>
+                                        <th>Date</th>
+                                        <th>Heure</th>
+                                        <th>Description</th>
+                                        <th>Heure d'inscription</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="temp : ${app}">
+                                        <td th:text="${temp.id}" />
+                                        <td th:text="${temp.name}" />
+                                        <td th:text="${temp.email}" />
+                                        <td th:text="${temp.description}" />
+                                        <td th:text="${temp.time}" />
+                                        <td th:text="${temp.description}" />
+                                        <td th:text="${temp.regtime}" />
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FIN DU TABLEAU DE DONNÉES -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="copyright">
+                                <p>Droits d'auteur © Application Doctor+. Tous droits réservés. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- FIN DU CONTENU PRINCIPAL -->
+    </div>
+    <!-- FIN DU CONTENU DE LA PAGE -->
+</div>
+
+<!-- JavaScript -->
+<script src="../doctor/vendor/jquery-3.2.1.min.js"></script>
+<script src="../doctor/vendor/bootstrap-4.1/popper.min.js"></script>
+<script src="../doctor/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+<script src="../doctor/vendor/slick/slick.min.js"></script>
+<script src="../doctor/vendor/wow/wow.min.js"></script>
+<script src="../doctor/vendor/animsition/animsition.min.js"></script>
+<script src="../doctor/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<script src="../doctor/vendor/counter-up/jquery.waypoints.min.js"></script>
+<script src="../doctor/vendor/counter-up/jquery.counterup.min.js"></script>
+<script src="../doctor/vendor/circle-progress/circle-progress.min.js"></script>
+<script src="../doctor/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="../doctor/vendor/chartjs/Chart.bundle.min.js"></script>
+<script src="../doctor/vendor/select2/select2.min.js"></script>
+<script src="../doctor/js/main.js"></script>
+</body>
+
+</html>
+<!-- Fin du document -->

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Contact - Projet BioMed</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Styles CSS personnalisés */
+        body {
+            background-image: url('../images/bg.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #fff;
+        }
+
+        .navbar {
+            background-color: #0056b3 !important;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+        }
+
+        .nav-link {
+            font-size: 1.2rem;
+        }
+
+        .footer {
+            background-color: #0056b3;
+            color: #ffffff;
+        }
+
+        .contact-section {
+            padding: 100px 0;
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            color: #000 !important;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-section .form-control {
+            border-radius: 0;
+            border-color: #0056b3;
+        }
+
+        .contact-section .btn-primary {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .contact-info a {
+            color: #0056b3;
+        }
+
+        .contact-info span {
+            font-weight: bold;
+        }
+
+        /* Chat styles */
+        #chatbox {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            max-height: 400px;
+            overflow-y: auto;
+            display: none;
+            flex-direction: column;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            background: #fff;
+            border: 2px solid #0056b3;
+        }
+
+        #chatbox.active {
+            display: flex;
+        }
+
+        #chatbox .messages {
+            flex-grow: 1;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #chatbox .message {
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+            max-width: 80%;
+            position: relative;
+        }
+
+        #chatbox .message.user {
+            background-color: #e0f7fa;
+            align-self: flex-end;
+        }
+
+        #chatbox .message.bot {
+            background-color: #c5cae9;
+            align-self: flex-start;
+        }
+
+        #chatbox .input {
+            display: flex;
+            border-top: 1px solid #ccc;
+        }
+
+        #chatbox .input input {
+            flex-grow: 1;
+            border: none;
+            padding: 10px;
+            border-radius: 0 0 0 10px;
+        }
+
+        #chatbox .input button {
+            padding: 10px;
+            border: none;
+            background: #0056b3;
+            color: #fff;
+            border-radius: 0 0 10px 0;
+        }
+
+        #chatToggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #0056b3;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Projet BioMed</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Accueil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">À propos</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Contact</a>
+            </li>
+            <li class="nav-item cta"><a class="nav-link" data-toggle="modal" data-target="#modalAppointment"><span>Prendre un rendez-vous</span></a></li>
+            <li class="nav-item">
+                <form action="/logout" method="POST">
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<section class="contact-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="mb-4">Contactez-nous</h2>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Votre Nom">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Votre Adresse Email">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Sujet">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="5" placeholder="Votre Message"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                </form>
+            </div>
+            <div class="col-md-6 contact-info">
+                <h2 class="mb-4">Informations de Contact</h2>
+                <p><span>Email:</span> <a href="mailto:maroua@isga.com">maroua@isga.com</a></p>
+                <p><span>Email:</span> <a href="mailto:bader@isga.com">bader@isga.com</a></p>
+                <p><span>Email:</span> <a href="mailto:Maryem@isga.com">Maryem@isga.com</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer mt-auto py-3 text-center">
+    <div class="container">
+        <span>© 2024 Projet BioMed. Tous droits réservés.</span>
+    </div>
+</footer>
+
+<!-- Modal -->
+<div class="modal fade" id="modalAppointment" tabindex="-1" role="dialog" aria-labelledby="modalAppointmentLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAppointmentLabel">Prendre un rendez-vous</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/user/save-app" method="POST">
+                    <div class="form-group">
+                        <label for="appointment_name" class="text-black">Nom Complet</label>
+                        <input type="text" class="form-control" id="appointment_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="appointment_email" class="text-black">Email</label>
+                        <input type="text" class="form-control" id="appointment_email">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="appointment_date" class="text-black">Date</label>
+                                <input type="text" class="form-control" id="appointment_date">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="appointment_time" class="text-black">Heure</label>
+                                <input type="text" class="form-control" id="appointment_time">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="appointment_message" class="text-black">Message</label>
+                        <textarea id="appointment_message" class="form-control" cols="30" rows="10"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Envoyer le Message" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Chatbox -->
+<div id="chatbox">
+    <div class="messages">
+        <!-- Chat messages will be dynamically inserted here -->
+    </div>
+    <div class="input">
+        <input type="text" id="chatInput" placeholder="Tapez votre message...">
+        <button id="sendBtn">Envoyer</button>
+    </div>
+</div>
+<button id="chatToggle">Chat</button>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#chatToggle').click(function() {
+            $('#chatbox').toggleClass('active');
+        });
+
+        $('#sendBtn').click(function() {
+            const question = $('#chatInput').val();
+            if (question.trim() !== '') {
+                $.ajax({
+                    url: '/api/chat',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ question: question }),
+                    success: function(response) {
+                        const chatBox = $('#chatbox .messages');
+                        chatBox.append('<div class="message user"><strong>Vous :</strong> ' + question + '</div>');
+                        if (response && response !== '') {
+                            const jsonResponse = JSON.parse(response);
+                            const botResponse = jsonResponse.response || response;
+                            chatBox.append('<div class="message bot"><strong>Bot :</strong> ' + botResponse + '</div>');
+                        }
+                        $('#chatInput').val('');
+                        chatBox.scrollTop(chatBox[0].scrollHeight);
+                    },
+                    error: function() {
+                        alert('Erreur de communication avec le serveur du chatbot.');
+                    }
+                });
+            }
+        });
+    });
+</script>
+</body>
+
+</html>
